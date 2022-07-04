@@ -16,10 +16,10 @@ import javax.swing.JOptionPane;
  */
 public class Conexion {
     
-    public String bd = "bd_crm";
-    public String url = "jdbc:mysql://127.0.0.1:3306/" + bd;
-    public String user = "root";
-    public String password = "";
+    public String bd = "ykypmkom_bd_crm";
+    public String url = "jdbc:mysql://agenciabrishmancl.com:3306/" + bd;
+    public String user = "ykypmkom_brish";
+    public String password = "Canoleonbrishman1996";
 
     public Conexion() {
     }
