@@ -314,6 +314,7 @@ public class vlistarpedidos extends javax.swing.JFrame {
                 mp.setDireccion_envio(txtdireccion.getText());
                 mp.setIdtb_pedidos(Integer.parseInt(txt_idpedido.getText()));
                 func.RegistrarVenta(mp);
+                
                 JOptionPane.showMessageDialog(null,"Se registro la venta");
                 
             }else{
