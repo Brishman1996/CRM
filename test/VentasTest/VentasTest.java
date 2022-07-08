@@ -28,19 +28,19 @@ public class VentasTest {
     }
 
     @BeforeClass
-    private String[] idPedidos() {
+    private String[] idPedidos() {//Solo retorna  id_pedidos != entregado
+
         cpedidos func = new cpedidos();
-        
+
         DefaultTableModel modelo;
         modelo = func.mostrarPedidos();
-        
+
         //IDS
         String[] ids = new String[modelo.getRowCount()];
-        for(int i=0; i <modelo.getRowCount(); i++){
+        for (int i = 0; i < modelo.getRowCount(); i++) {
             ids[i] = (String) modelo.getValueAt(i, 0);
         }
-        System.out.println("ID DE FILA" + ids[1]);
-        return ids; 
+        return ids;
     }
 
     @AfterClass
@@ -59,62 +59,71 @@ public class VentasTest {
     @Test
     public void nuevaVenta_001() {
         
+        boolean esperado = false;
+
         mpedidos pedido = new mpedidos();
         cpedidos func = new cpedidos();
 
-        String idPedido = "7";
-        for(int i=0; i<idPedidos().length; i++ ){
-            if(idPedido == idPedidos()[i]){
+        String idPedido = "8";
+        for (int i = 0; i < idPedidos().length; i++) {
+            if (idPedido == idPedidos()[i]) {
                 pedido.setIdtb_pedidos(Integer.parseInt(idPedido));
-            }
-        }
 
-        int dia = 3, mes = 5, año = 2022;
-        Date fechaEnvio = new Date(año, mes, dia);
-        String formaEnvio = "Delivery";
-        String estadoPedido = "Enviado";
-        String direccion = "Villa Salavaje";
-        int diaE = 10, mesE = 7, añoE = 2022;
-        Date fechaEntrega = new Date(año, mes, dia);
+                Date fechaEnvio = new Date(116, 5, 3);
+                String formaEnvio = "Delivery";
+                String estadoPedido = "Entregado";
+                String direccion = "Villa Salavaje";
+                Date fechaEntrega = new Date(116, 7, 10);
+
+                pedido.setFecha_entrega(fechaEntrega);
+                pedido.setFecha_envio(fechaEnvio);
+                pedido.setForma_envio(formaEnvio);
+                pedido.setDireccion_envio(direccion);
+                pedido.setEstado_pedido(estadoPedido);
+                
+                //VALIDACION
+                esperado = func.RegistrarVenta(pedido);
+            } else {
+                esperado = false;
+            }    
+        }       
         
-        pedido.setFecha_envio(fechaEnvio);
-        pedido.setFecha_entrega(fechaEntrega);
-        pedido.setForma_envio(formaEnvio);
-        pedido.setEstado_pedido(estadoPedido);
-        pedido.setDireccion_envio(direccion);
-        
-        System.out.println("PROBANDO TEST IDS STRING"+ idPedidos()[1]);
+        //pedido.setIdtb_pedidos(9);
         assertTrue(func.RegistrarVenta(pedido));
     }
     
     @Test
     public void nuevaVenta_002() {
         
+        boolean esperado = false;
+
         mpedidos pedido = new mpedidos();
         cpedidos func = new cpedidos();
 
-        String idPedido = "10";
-        for(int i=0; i<idPedidos().length; i++ ){
-            if(idPedido == idPedidos()[i]){
+        String idPedido = "32";
+        for (int i = 0; i < idPedidos().length; i++) {
+            if (idPedido == idPedidos()[i]) {
                 pedido.setIdtb_pedidos(Integer.parseInt(idPedido));
-            }
-        }
 
-        int dia = 3, mes = 5, año = 2022;
-        Date fechaEnvio = new Date(año, mes, dia);
-        String formaEnvio = "Delivery";
-        String estadoPedido = "Enviado";
-        String direccion = "Villa Salavaje";
-        int diaE = 10, mesE = 7, añoE = 2022;
-        Date fechaEntrega = new Date(año, mes, dia);
+                Date fechaEnvio = new Date(116, 5, 3);
+                String formaEnvio = "Delivery";
+                String estadoPedido = "Entregado";
+                String direccion = "Villa Salavaje";
+                Date fechaEntrega = new Date(116, 7, 10);
+
+                pedido.setFecha_entrega(fechaEntrega);
+                pedido.setFecha_envio(fechaEnvio);
+                pedido.setForma_envio(formaEnvio);
+                pedido.setDireccion_envio(direccion);
+                pedido.setEstado_pedido(estadoPedido);
+                
+                //VALIDACION
+                esperado = func.RegistrarVenta(pedido);
+            } else {
+                esperado = false;
+            }    
+        }       
         
-        pedido.setFecha_envio(fechaEnvio);
-        pedido.setFecha_entrega(fechaEntrega);
-        pedido.setForma_envio(formaEnvio);
-        pedido.setEstado_pedido(estadoPedido);
-        pedido.setDireccion_envio(direccion);
-        
-        System.out.println("PROBANDO TEST IDS STRING"+ idPedidos()[1]);
         assertFalse(func.RegistrarVenta(pedido));
     }
 
